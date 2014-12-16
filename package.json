@@ -1,6 +1,6 @@
 {
   "name": "pub-sub-handler",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Redis Pub/Sub with an object & key on message.",
   "main": "index.js",
   "dependencies": {

@@ -3,7 +3,7 @@
 This was written to be used with Redis as a Publish/Subscribe handler. It is just a wrapper designed to help with managing sockets.
 
 
-Setup:
+### Setup:
 
 ```
 var psh = require( 'pub-sub-handler' )( { host: localhost, port: 6379 }, function( channel ){
@@ -11,7 +11,7 @@ var psh = require( 'pub-sub-handler' )( { host: localhost, port: 6379 }, functio
 };
 ```
 
-Subscribing:
+### Subscribing:
 
 ```
 psh.subscribe( 'channel-name', 'key', object, function( channel, key, object, message ){
@@ -19,16 +19,23 @@ psh.subscribe( 'channel-name', 'key', object, function( channel, key, object, me
 };
 ```
 
-Publishing:
+### Publishing:
 
 ```
 psh.publish( 'channel-name', 'message' );
 ```
 
-Unsubscribing:
+### Unsubscribing:
 
 ```
 psh.unsubscribe( 'channel-name', 'key' );
+```
+
+### End:
+(kill the Redis connections)
+
+```
+psh.end();
 ```
 
 ## Common Use

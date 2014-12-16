@@ -11,6 +11,7 @@ module.exports = function( options, callback ){
   if( !options ) options = {};
   if( !options.host ) options.host = 'localhost';
   if( !options.port ) options.port = 6379;
+  if( !callback ) callback = function(){};
 
   subscribeClient = redis.createClient(options.port, options.host);
   publishClient = redis.createClient(options.port, options.host);
