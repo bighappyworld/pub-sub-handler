@@ -36,18 +36,6 @@ module.exports = function( options, callback ){
       }, function( err ){
         console.log( err );
       });
-      /*
-      Object.keys(subscribers[channel]).forEach( function(key){
-        if( key !== 'cache' ){
-          try{
-            var object = subscribers[channel][key].object;
-            subscribers[channel][key].callback( channel, key, message, object );
-          }catch( e ){
-            console.log( "ERR: " + e );
-          }
-        }
-      });
-      */
     }
   });
 
@@ -80,9 +68,11 @@ module.exports.subscribe = function( channel, key, object, cached, callback ){
 module.exports.unsubscribe = function( channel, key ){
   if( subscribeClient && channel && key ){
     if( subscribers[channel] && subscribers[channel][key] ){
-      subscribeClient.unsubscribe(channel);
       delete subscribers[channel][key];
-      if( Object.keys(subscribers[channel]).length === 0 ) delete subscribers[channel];
+      if( Object.keys(subscribers[channel]).length === 0 ){
+        subscribeClient.unsubscribe(channel);
+        delete subscribers[channel];
+      }
     }
   }
 };
